@@ -25,9 +25,9 @@ mixin FbNotifications {
     if (!kIsWeb) {
       channel = const AndroidNotificationChannel(
 
-        'mewb_notifications_channel',//id
-        'mewb Notifications Channel',//name
-        description: 'This channel will receive notifications specific to mewb',//channel
+        'kuttab_notifications_channel',//id
+        'kuttab Notifications Channel',//name
+        description: 'This channel will receive notifications specific to kuttab',//channel
         //'This channel will receive notifications specific to gateway',
         importance: Importance.high,
         enableLights: true,
@@ -92,7 +92,7 @@ mixin FbNotifications {
 
               channel.id,
               channel.name,
-              channelDescription: 'This channel will receive notifications specific to mewb' ,
+              channelDescription: 'This channel will receive notifications specific to kuttab' ,
               //channel.description,
               icon: 'launch_background',
             ),

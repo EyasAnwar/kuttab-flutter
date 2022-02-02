@@ -1,3 +1,6 @@
+import 'package:quran/models/class.dart';
+import 'package:quran/models/school.dart';
+import 'package:quran/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesController {
@@ -34,40 +37,52 @@ class SharedPreferencesController {
     return await sharedPreferences.setInt('cityId', cityId);
   }
 
-  // Future<void> save({required User user}) async {
-  //   await sharedPreferences.setBool('logged_in', true);
-  //   await sharedPreferences.setInt('id', user.id);
-  //   await sharedPreferences.setString('name', user.name);
-  //   await sharedPreferences.setString('gender', user.gender);
-  //   await sharedPreferences.setString('token', "Bearer ${user.token}");
-  //   await sharedPreferences.setString('mobile', user.mobile);
-  //   await sharedPreferences.setBool('active', user.active);
-  //   await sharedPreferences.setInt('cityId', user.cityId);
-  //   await sharedPreferences.setString('email', user.email??'');
-  //   await sharedPreferences.setBool('verified', user.verified);
-  //   await sharedPreferences.setInt('storeId', user.storeId);
-  // }
-  //
-  // User? get user {
-  //   User user = User();
-  //   user.id = sharedPreferences.getInt('id') ?? 0;
-  //   user.name = sharedPreferences.getString('name') ?? '';
-  //   user.gender = sharedPreferences.getString('gender') ?? '';
-  //   user.token = sharedPreferences.getString('token') ?? '';
-  //   user.mobile = sharedPreferences.getString('mobile') ?? '';
-  //   user.active = sharedPreferences.getBool('active') ?? false;
-  //   user.cityId = sharedPreferences.getInt('cityId') ?? 0;
-  //   user.email = sharedPreferences.getString('email') ?? '';
-  //   user.verified = sharedPreferences.getBool('verified') ?? false;
-  //   user.storeId = sharedPreferences.getInt('storeId') ?? 0;
-  //   return user;
-  // }
+  Future<void> saveUserData({required User user}) async {
+    await sharedPreferences.setInt('id', user.id);
+    await sharedPreferences.setBool('logged_in', true);
+    await sharedPreferences.setString('token', user.token!);
+    await sharedPreferences.setInt('user_school_id', user.school_id);
+    await sharedPreferences.setString('type', user.type);
+  }
+
+  Future<void> setFirstTime({required bool firstTime}) async {
+    await sharedPreferences.setBool('firstTime', false);
+  }
+
+  Future<void> saveSchoolData({required School school}) async {
+    await sharedPreferences.setInt('school_id', school.id);
+  }
+
+  Future<void> saveClassData({required SchoolClass schoolClass}) async {
+    await sharedPreferences.setString('class_name', schoolClass.name);
+  }
+
+  User? get user {
+    User user = User();
+    user.id = sharedPreferences.getInt('id') ?? 0;
+    user.school_id = sharedPreferences.getInt('user_school_id') ?? 0;
+    user.type = sharedPreferences.getString('type') ?? '';
+    return user;
+  }
+
+  School? get school {
+    School school = School();
+    school.id = sharedPreferences.getInt('school_id') ?? 0;
+    school.name = sharedPreferences.getString('school_title') ?? '';
+    school.address = sharedPreferences.getString('school_address') ?? '';
+    school.logo = sharedPreferences.getString('school_logo') ?? '';
+    return school;
+  }
+
+  SchoolClass? get schoolClass {
+    SchoolClass school = SchoolClass();
+    school.name = sharedPreferences.getString('class_name') ?? '';
+    return school;
+  }
 
   bool get loggedIn => sharedPreferences.getBool('logged_in') ?? false;
-  String get token => sharedPreferences.getString('accessTokenValue') ?? '';
-
-
-
+  String get token => sharedPreferences.getString('token') ?? '';
+  bool get firstTime => sharedPreferences.getBool('firstTime') ?? true;
 
   Future<bool> logout() async {
     return await sharedPreferences.clear();

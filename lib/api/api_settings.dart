@@ -1,42 +1,38 @@
 class ApiSettings {
 
   //Auth Request
-  static const String _BASE_URL = 'https://www.demo.com';
-  static const String LOGIN = _BASE_URL + "auth/login";
-  static const String LOGOUT = _BASE_URL + "auth/logout";
-  static const String REGISTER = _BASE_URL + "auth/register";
-  static const String RESET_PASSWORD = _BASE_URL + "auth/reset-password";
-  static const String FORGET_PASSWORD = _BASE_URL + "auth/forget-password";
-  static const String ACTIVATE_ACCOUNT = _BASE_URL + "auth/activate";
-  static const String CHANGE_PASSWORD = _BASE_URL + "auth/change-password";
-  static const String CONTACT_US = _BASE_URL + "contact-requests";
-  static const String UPDATE_PROFILE = _BASE_URL + "auth/update-profile";
-  static const String HOME = _BASE_URL + "home";
-  static const String REFRESHFCMTOKEN = _BASE_URL + "/auth/refresh-fcm-token";
-  static const String NOTIFICATION = _BASE_URL + "notifications";
+  static const String BASE_URL = 'https://kuttab.sirius-it.dev/';
+  static const String LOGIN = BASE_URL + "api/v1/auth/user/login";
+  static const String TEACHER_STUDENT = BASE_URL + "api/v1/teacher/2/students";
+  static const String LOGOUT = BASE_URL + "api/v1/auth/logout";
+  static const String PARENT_CHILDREN = BASE_URL + "api/v1/parent/1/children";
+  static const String ATTENDANCE = BASE_URL + "api/v1/attendance";
+  static const String SEARCH = BASE_URL + "api/v1/student/search/byUsername";
+  static const String DAILY_RECORD = BASE_URL + "api/v1/dailyRecord";
+  static const String RESONE = BASE_URL + "api/v1/attendanceReasons";
 
 
   //Cities Request
-  static const String CITIES = _BASE_URL + "cities";
+  static const String CITIES = BASE_URL + "cities";
 
   //category Req && sub category
-  static const String CATEGORY = _BASE_URL + "categories";
+  static const String CATEGORY = BASE_URL + "categories";
 
   //product re
-  static const String PRODUCT = _BASE_URL + "sub-categories";
-  static const String PRODUCT_DETAILS = _BASE_URL + "products";
-  static const String FAVORITE_PRODUCT = _BASE_URL + "favorite-products";
-  static const String RATTING_PRODUCT = _BASE_URL + "products/rate";
+  static const String PRODUCT = BASE_URL + "sub-categories";
+  static const String PRODUCT_DETAILS = BASE_URL + "products";
+  static const String FAVORITE_PRODUCT = BASE_URL + "favorite-products";
+  static const String RATTING_PRODUCT = BASE_URL + "products/rate";
   //order
-  static const String ORDER = _BASE_URL + "orders";
+  static const String ORDER = BASE_URL + "orders";
 
 
 
 
   //card
-  static const String CARD = _BASE_URL + "payment-cards";
+  static const String CARD = BASE_URL + "payment-cards";
 
 //address
 
-  static const String ADDRESS = _BASE_URL + "addresses";
+  static const String ADDRESS = BASE_URL + "addresses";
 }

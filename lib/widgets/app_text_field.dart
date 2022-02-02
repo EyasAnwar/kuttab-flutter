@@ -1,98 +1,97 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:quran/utils/app_colors.dart';
+import 'package:flutter_svg/svg.dart';
 
-class AppTextField extends StatelessWidget {
-  final TextInputType textInputType;
+class AppTextFiled extends StatelessWidget {
+  final TextEditingController controller;
   final String hint;
-  final double? height;
-  final double? width;
-  final int? minLines;
-  final int? maxLines;
-  final IconData? prefixIcon;
-  final IconData? suffixIcon;
-  final bool? enable;
-  final bool readOnly;
+  final String textFiledTitle;
+  final String icon;
+  final String? suffixIcon;
+  bool obscureText = false;
+  Future<void> Function()? onSuffixTab;
 
-  final Color? hintColor;
-  TextAlign textAlign;
-   EdgeInsetsGeometry? contentPadding= EdgeInsets.only(left: 12.w,top: 10.h,bottom: 10.h);
-
-  final void Function(String value)? onChanged;
-  final void Function()? onTap;
-  final bool obscureText;
-  final TextEditingController? controller;
-  final double hintSize;
-
-  AppTextField({Key? key,
-    this.contentPadding ,
-    this.textAlign = TextAlign.start,
-    required this.controller,
-    this.textInputType = TextInputType.text,
+  AppTextFiled({required this.controller,
     required this.hint,
+    required this.icon,
+    this.onSuffixTab,
+    this.suffixIcon,
     this.obscureText = false,
-    this.height,
-    this.prefixIcon,
-    this.enable,
-    this.hintColor,
-    this.hintSize = 15, this.onChanged, this.width, this.suffixIcon, this.minLines, this.maxLines=1, this.onTap, this.readOnly = false,
-
-  }) : super(key: key);
+    required this.textFiledTitle});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      width: width,
-      decoration: BoxDecoration(
-        // color: AppColors.lightTextFieldColor,
-        color: AppColors.lightFillFieldHintColor,
-
-
-          borderRadius: BorderRadius.circular(15.h)),
-      child: TextField(
-          onChanged: onChanged,
-          textAlign: textAlign,
-          enabled: enable,
-          controller: controller,
-          keyboardType: textInputType,
-          obscureText: obscureText,
-          maxLines: maxLines,
-          minLines: minLines,
-          readOnly: readOnly,
-          onTap:onTap,
-
-
-
-          decoration: InputDecoration(
-
-            prefixIcon: prefixIcon != null
-                ? Icon(prefixIcon,
-                    color: Color(
-                      0xFF0D0E56,
-                    ))
-                : null,
-            suffixIcon:suffixIcon != null
-                ? Icon(suffixIcon,
-                color: AppColors.mainColor)
-                : null,
-            hintStyle: TextStyle(
-                fontSize: 13.sp,
-                fontWeight: FontWeight.w400,
-                color: hintColor),
-            hintText: (hint),
-
-
-            contentPadding:  EdgeInsetsDirectional.only(
-              start: 10.w,
-              end: 15.w,
-
-              //bottom: 18.h,
+    return Column(
+      children: [
+        // TextFiled title
+        Row(
+          children: [
+            SvgPicture.asset(
+              icon,
+              color: Colors.green,
+              width: 20.w,
             ),
-
-            enabledBorder: InputBorder.none,
-            focusedBorder: InputBorder.none
-          )),
+            SizedBox(
+              width: 10.w,
+            ),
+            Text(
+              textFiledTitle,
+              style: const TextStyle(
+                fontSize: 17,
+                color: Colors.black,
+              ),
+            ),
+          ],
+        ),
+        // Space
+        SizedBox(height: 5.h),
+        // TextFiled
+        Container(
+          height: 50.h,
+          child: Center(
+            child: TextField(
+              obscureText: obscureText,
+              controller: controller,
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.all(10),
+                suffixIcon: GestureDetector(
+                  onTap: onSuffixTab ?? (){},
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: SvgPicture.asset(
+                      suffixIcon ?? '',
+                      color: Colors.green,
+                    ),
+                  ),
+                ),
+                fillColor: Colors.white,
+                hintText: hint,
+                // floatingLabelBehavior: FloatingLabelBehavior.always,
+                hintStyle: const TextStyle(
+                  color: Colors.grey,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(15),
+                  ),
+                  borderSide: BorderSide(
+                    color: Color(0xFFE4E6EA).withOpacity(0.1),
+                    width: 1.w,
+                  ),
+                ),
+                focusedBorder: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(15),
+                  ),
+                  borderSide: BorderSide(
+                    color: Color(0xff2CBC67),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        )
+      ],
     );
   }
 }

@@ -7,6 +7,7 @@ import 'package:quran/utils/helper.dart';
 
 
 mixin ApiMixin {
+
   Uri getUrl(String url) {
     return Uri.parse(url);
   }
@@ -16,16 +17,12 @@ mixin ApiMixin {
   }
 
   void handleServerError(BuildContext context) {
-
-    Helper.showSnackBar(context,
-        text: 'Unable to perform your request now!', error: true);
+    Helper.showSnackBar(context, text: 'Unable to perform your request now!', error: true);
   }
 
-  void showMessage(BuildContext context, Response response,
-      {bool error = false}) {
-    Helper.showSnackBar(context,
-        text: jsonDecode(response.body)['message'], error: error);
-  }
+  void showMessage(BuildContext context, Response response, {bool error = false}) {
+    Helper.showSnackBar(context, text: jsonDecode(response.body)['message'], error: error);
+  } // ??
 
   Map<String, String> get requestHeaders {
     return {
@@ -44,14 +41,30 @@ mixin ApiMixin {
 
   Map<String, String> get header {
     return {
-      HttpHeaders.authorizationHeader: SharedPreferencesController().token,
+      HttpHeaders.authorizationHeader: 'Bearer ${SharedPreferencesController().token}',
       'X-Requested-With': 'XMLHttpRequest',
       'Accept': 'application/json'
     };
   }
+  Map<String, String> get jsonHeader {
+    return {
+      HttpHeaders.authorizationHeader: 'Bearer ${SharedPreferencesController().token}',
+      'X-Requested-With': 'XMLHttpRequest',
+      'Accept': 'application/json',
+      'Content-Type':'application/json'
+
+    };
+  }
+
+  Map<String, String> get headers {
+    return {
+      HttpHeaders.authorizationHeader: 'Bearer ${SharedPreferencesController().token}',
+      HttpHeaders.contentTypeHeader: 'application/json',
+    };
+  }
+
   Map<String, String> get headerNotification {
     return {
-      HttpHeaders.authorizationHeader: SharedPreferencesController().token,
 
       'Accept': 'application/json'
     };

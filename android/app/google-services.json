@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "100911212776",
+    "project_id": "kuttab-app",
+    "storage_bucket": "kuttab-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:100911212776:android:3b5662d1d493a1a96d415d",
+        "android_client_info": {
+          "package_name": "com.qts.kuttab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "100911212776-06a1a0tgmvu532t5tj9ku699cdr8fli9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKqbaJTNk3F5k4h9K-zWD8JpFoz4rCVes"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "100911212776-06a1a0tgmvu532t5tj9ku699cdr8fli9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
